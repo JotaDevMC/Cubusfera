@@ -1,0 +1,4 @@
+name: Cubusfera
+version: git-${git.commit.id.full}
+author: [JJ99_]
+main: com.cubusfera.core.Core
