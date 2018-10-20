@@ -43,17 +43,18 @@ public class AuthListener implements Listener {
     @EventHandler
     public void onPlayerLogin(LoginEvent event) {
         if (notLoggedIn.contains(event.getPlayer())) notLoggedIn.remove(event.getPlayer());
-        if (core.getPermsApi().getUser(event.getPlayer().getUniqueId()).getPrimaryGroup() == "default") {
+        Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.GRAY + "] " + event.getPlayer().getName());
+        if (core.getPermsApi().getUser(event.getPlayer().getUniqueId()).getPrimaryGroup().equalsIgnoreCase("default")) {
             event.getPlayer().sendMessage("");
             CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.BLUE + "¡Bienvenido a " + ChatColor.BOLD + "Cubusfera" + ChatColor.RESET + ChatColor.BLUE + "!");
             event.getPlayer().sendMessage("");
-            CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.YELLOW + "Aún no has sido verificado por un administrador. Para ello,");
-            CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.YELLOW + "asegúrate de haber hablado con un administrador por Discord.");
+            CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.YELLOW + "Aún no has sido verificado por un administrador.");
+            CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.YELLOW + "Para ser verificado, ponte en contacto con un");
+            CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.YELLOW + "admin a través de Discord si no lo has hecho ya.");
             event.getPlayer().sendMessage("");
             CentralizeHelper.sendCenteredMessage(event.getPlayer(), ChatColor.BLUE + "" + ChatColor.BOLD + " discord.cubusfera.com");
             event.getPlayer().sendMessage("");
         }
-        Bukkit.broadcastMessage(ChatColor.GRAY + "[" + ChatColor.GREEN + "+" + ChatColor.GRAY + "] " + event.getPlayer().getName());
     }
 
     @EventHandler

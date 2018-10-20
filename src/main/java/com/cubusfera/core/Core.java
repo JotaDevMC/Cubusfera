@@ -35,7 +35,7 @@ public class Core extends JavaPlugin {
     private static OnlineTimeData onlineTimeData;
 
     public void setupOnlineModule() {
-        onlineTimeData = new YAMLOnlineTimeData(new Config("/data/onlinetime", this));
+        onlineTimeData = new YAMLOnlineTimeData(new Config("data/onlinetime", this));
         this.getServer().getPluginManager().registerEvents(new OnlineTimeListener(this), this);
         //TODO: Register placeholder api integration
         System.out.println("Successfully loaded online time module;");

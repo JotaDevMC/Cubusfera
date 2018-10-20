@@ -9,6 +9,7 @@ public class YAMLOnlineTimeData implements OnlineTimeData {
 
     public YAMLOnlineTimeData(Config config) {
         this.config = config;
+        config.saveDefaultConfig();
     }
 
     public Long getOnlineTime(Player player) {
