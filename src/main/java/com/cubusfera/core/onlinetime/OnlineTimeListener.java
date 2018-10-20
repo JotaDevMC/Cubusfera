@@ -27,7 +27,7 @@ public class OnlineTimeListener implements Listener {
     public void onPlayerQuit(PlayerQuitEvent event){
         Long join = millis.get(event.getPlayer());
         Long millisOnline = (Calendar.getInstance().getTimeInMillis() - join);
-
+        core.getOnlineTimeData().addOnlineTime(event.getPlayer(), millisOnline);
     }
 
 }
