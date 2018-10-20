@@ -242,7 +242,6 @@
 
                         *Note*: `useNativeGit` needs to be set to `true` to use the native Git executable.
                     -->
-                    <nativeGitTimeoutInMs>30000</nativeGitTimeoutInMs>
 
                     <!-- @since v2.0.4 -->
                     <!--
