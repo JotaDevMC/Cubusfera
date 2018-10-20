@@ -13,7 +13,10 @@ public class YAMLOnlineTimeData implements OnlineTimeData {
     }
 
     public Long getOnlineTime(Player player) {
-        return (Long) config.getConfig().getLong("players." + player.getUniqueId().toString());
+        if(config.getConfig().contains("players." + player.getUniqueId().toString())) {
+            return (Long) config.getConfig().getLong("players." + player.getUniqueId().toString());
+        }
+        return 0L;
     }
 
     public void setOnlineTime(Player player, long time) {

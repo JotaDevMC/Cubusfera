@@ -74,7 +74,7 @@ public class AuthListener implements Listener {
 
     public static String getOnlineDuration(long l1) {
         if (l1 < 0) {
-            throw new IllegalArgumentException("Duration must be greater than zero!");
+            return ChatColor.GREEN + "0" + ChatColor.YELLOW + "segundo(s)";
         }
 
         long days = TimeUnit.MILLISECONDS.toDays(l1);
