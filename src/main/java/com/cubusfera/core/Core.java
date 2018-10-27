@@ -1,9 +1,11 @@
 package com.cubusfera.core;
 
+import co.aikar.commands.BukkitCommandManager;
 import com.cubusfera.core.auth.AuthListener;
 import com.cubusfera.core.onlinetime.OnlineTimeData;
 import com.cubusfera.core.onlinetime.OnlineTimeListener;
 import com.cubusfera.core.onlinetime.YAMLOnlineTimeData;
+import com.cubusfera.core.staff.StaffUserCommand;
 import com.cubusfera.core.util.Config;
 import fr.xephi.authme.api.v3.AuthMeApi;
 import me.lucko.luckperms.api.LuckPermsApi;
@@ -13,15 +15,23 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Core extends JavaPlugin {
     private boolean placeholderapi = false;
+    BukkitCommandManager commandManager;
 
     public void onEnable() {
         if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) placeholderapi = true;
+        commandManager = new BukkitCommandManager(this);
+        commandManager.enableUnstableAPI("help");
+        commandManager.setDefaultExceptionHandler((command, registeredCommand, sender, args, t) -> {
+            getLogger().warning("Error occured while executing command " + command.getName());
+            return false; // mark as unhandeled, sender will see default message
+        });
         /*
          * Load all modules
          */
         setupOnlineModule();
         setupPermissionModule();
         setupAuthModule();
+        setupStaffModule();
         System.out.println("Plugin enabled.");
     }
 
@@ -84,4 +94,13 @@ public class Core extends JavaPlugin {
     public static AuthMeApi getAuthmeApi() {
         return authmeApi;
     }
+
+    /**
+     * Staff module
+     */
+    public void setupStaffModule() {
+        commandManager.registerCommand(new StaffUserCommand());
+        System.out.println("Successfully loaded staff module.");
+    }
+
 }
