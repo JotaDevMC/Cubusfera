@@ -27,7 +27,7 @@ public class StaffUserCommand extends BaseCommand {
             sender.sendMessage(ChatColor.RED + "No puedes aceptarte a ti mismo!");
             return;
         }
-        if ((Bukkit.getOfflinePlayer(name).getUniqueId() == null) || (!Bukkit.getOfflinePlayer(name).hasPlayedBefore())) {
+        if (((Bukkit.getOfflinePlayer(name).getUniqueId() == null) || (!Bukkit.getOfflinePlayer(name).hasPlayedBefore()) && (Bukkit.getPlayer(name) == null))) {
             sender.sendMessage(ChatColor.RED + "El jugador debe estar registrado.");
             return;
         }
